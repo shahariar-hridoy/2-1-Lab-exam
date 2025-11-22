@@ -95,6 +95,9 @@ public class EmployeeManager {
             }
             System.out.println("Data Deleted.");
         }
+        else{
+             System.out.println("Invalid arguments! Provide an argument (l, s, +, ?, c, u, d).");
+        }
     }
 
     private static String[] readEmployees() {
