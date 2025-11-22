@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.*;
 
@@ -7,7 +8,7 @@ public class EmployeeManager {
 
     public static void main(String[] args) {
 
-        if (args.length == 0 ) {
+        if (args.length == 0) {
             System.out.println("Error: Provide an argument (l, s, +, ?, c, u, d).");
             return;
         }
@@ -43,20 +44,21 @@ public class EmployeeManager {
         } else if (command.startsWith(Constants.FIND_EMPLOYEE)) {
             System.out.println("Loading data ...");
             String[] employees = readEmployees();
+            
             if (employees != null) {
                 String searchName = command.substring(1);
-                boolean found = false;
-                for (String employee : employees) {
-                    if (employee.equals(searchName)) {
-                        System.out.println("Employee found!");
-                        found = true;
-                        break;
-                    }
-                }
-            }
-            System.out.println("Data Loaded.");
 
-        } else if (command.contains(Constants.COUNT_EMPLOYEES)) {
+                if (Arrays.asList(employees).contains(searchName)) {
+                    System.out.println("Employee found: " + searchName);
+                } else {
+                    System.out.println("Employee not found: " + searchName);
+                }
+
+            }
+
+            System.out.println("Data Loaded.");
+        }
+         else if (command.contains(Constants.COUNT_EMPLOYEES)) {
             System.out.println("Loading data ...");
             String[] employees = readEmployees();
             if (employees != null) {
