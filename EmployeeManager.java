@@ -7,13 +7,15 @@ public class EmployeeManager {
     private static final String FILE_NAME = "employees.txt";
 
     public static void main(String[] args) {
-
+        // checks argument is write or wrong
         if (args.length == 0) {
             System.out.println("Error: Provide an argument (l, s, +, ?, c, u, d).");
             return;
         }
 
         String command = args[0];
+
+        // show all the employees 
 
         if (command.equals(Constants.LIST_EMPLOYEES)) {
             System.out.println("Loading data ...");
@@ -25,6 +27,8 @@ public class EmployeeManager {
             }
             System.out.println("Data Loaded.");
 
+            // Show random employee from file
+
         } else if (command.equals(Constants.SHOW_RANDOM_EMPLOYEE)) {
             System.out.println("Loading data ...");
             String[] employees = readEmployees();
@@ -35,11 +39,15 @@ public class EmployeeManager {
             }
             System.out.println("Data Loaded.");
 
+            // Add employee to the file
+
         } else if (command.startsWith(Constants.ADD_EMPLOYEE)) {
             System.out.println("Loading data ...");
             String newEmployee = command.substring(1);
             appendToFile(newEmployee);
             System.out.println("Data Loaded.");
+            
+            // find employee 
 
         } else if (command.startsWith(Constants.FIND_EMPLOYEE)) {
             System.out.println("Loading data ...");
@@ -57,8 +65,10 @@ public class EmployeeManager {
             }
 
             System.out.println("Data Loaded.");
-        }
-         else if (command.equals(Constants.COUNT_EMPLOYEES)) {
+
+            // count employee
+
+        } else if (command.equals(Constants.COUNT_EMPLOYEES)) {
             System.out.println("Loading data ...");
             String[] employees = readEmployees();
             if (employees != null) {
@@ -69,6 +79,8 @@ public class EmployeeManager {
                 System.out.println(wordCount + " word(s) found " + allText.length());
             }
             System.out.println("Data Loaded.");
+
+            // update employee
 
         } else if (command.startsWith(Constants.UPDATE_EMPLOYEE)) {
             System.out.println("Loading data ...");
@@ -83,6 +95,8 @@ public class EmployeeManager {
                 writeToFile(employees);
             }
             System.out.println("Data Updated.");
+
+            // delete employee
 
         } else if (command.contains(Constants.DELETE_EMPLOYEE)) {
             System.out.println("Loading data ...");
@@ -99,7 +113,7 @@ public class EmployeeManager {
              System.out.println("Invalid arguments! Provide an argument (l, s, +, ?, c, u, d).");
         }
     }
-
+    // read employee from file
     private static String[] readEmployees() {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line = reader.readLine();
@@ -111,7 +125,7 @@ public class EmployeeManager {
         }
         return null;
     }
-
+    // Write into the file
     private static void writeToFile(String[] employees) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
             writer.write(String.join(",", employees));
@@ -119,7 +133,7 @@ public class EmployeeManager {
             System.out.println("Error writing file.");
         }
     }
-
+    // append into the file
     private static void appendToFile(String employee) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
             writer.write("," + employee);
