@@ -7,8 +7,8 @@ public class EmployeeManager {
 
     public static void main(String[] args) {
 
-        if (args.length == 0) {
-            System.out.println("Provide an argument (l, s, +, ?, c, u, d).");
+        if (args.length == 0 ) {
+            System.out.println("Error: Provide an argument (l, s, +, ?, c, u, d).");
             return;
         }
 
