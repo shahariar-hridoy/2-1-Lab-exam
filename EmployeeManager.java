@@ -124,7 +124,7 @@ public class EmployeeManager {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
             writer.write("," + employee);
         } catch (Exception e) {
-            System.out.println("Error writing file.");
+            System.out.println("Error writing files.");
         }
     }
 }
